@@ -15,7 +15,7 @@ import java.awt.SystemColor;
 import java.awt.Font;
 /**
  * The UI view of the program
- * @author lenovo
+ * @author CDT
  *
  */
 public class UserView extends JFrame {

@@ -17,7 +17,7 @@ import java.util.Hashtable;
  * Manage words cache. This class has a dictionary HashMap for searching and a file which
  * stores all words. When sorting the words list, this class puts all keys into an arrayList
  * and sort them.
- * @author lenovo
+ * @author CDT
  *
  */
 public class DictCache {
@@ -133,50 +133,22 @@ public class DictCache {
 	 */
 	public void readAllDictFiles(){
 		dictionary.clear();
-		for(int i=3;i<11;i++){
-			String name="dict/"+i+".txt";
-			readDictFile(name);
+		File[] dictList=new File("dict").listFiles();
+		for(File f:dictList){
+			if(f.isFile() && f.getName().endsWith(".txt"))
+			readSpecialFile(f);
 		}
-		readDictFile("dict/english.txt");
-		readDictFile("dict/enable1.txt");
-		readDictFile("dict/sowpods.txt");
-		readSpecialFile("dict/more_words.txt");
-
 	}
 
-
-	/**
-	 * Read contents from a specific dictionary file into the dictionary map
-	 */
-	public void readDictFile(String name){
-		File dict=new File(name);
-		try(FileReader fr=new FileReader(dict);
-				BufferedReader br=new BufferedReader(fr);){
-
-			String str=br.readLine();
-			while(str!=null){
-				str=str.toUpperCase();//All keys in the hashtable are uppercase
-				//If the key does not exist,add the key+value to the map
-				if(isWordValid(str)&&dictionary.get(str)==null){
-					dictionary.put(str,str);
-				}
-				str=br.readLine();
-			}
-
-		}catch(IOException e){
-			System.err.println("Dictionary Reading Error");	 
-		} 
-	}
 
 	/**
 	 * Read a dictionary in which each line could contain multiple words
 	 */
-	public void readSpecialFile(String name){
+	public void readSpecialFile(File f){
 		ArrayList<String> allwords=new ArrayList<String>();
-		File dict=new File(name);
 
 		//Get all words into an arrayList of String
-		try(FileReader fr1=new FileReader(dict);
+		try(FileReader fr1=new FileReader(f);
 				BufferedReader br1=new BufferedReader(fr1);){
 
 			String str=br1.readLine();
