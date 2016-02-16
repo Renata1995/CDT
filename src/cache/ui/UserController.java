@@ -10,7 +10,7 @@ import cache.domain.DictCache;
 
 /**
  * Controls the whole program. Connect view and model.
- * @author lenovo
+ * @author CDT
  *
  */
 public class UserController {
