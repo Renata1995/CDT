@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class DictCacheTest {
-
+	
+	public static final String DIC_TESTING="test/dicTesting.txt";
+	public static final String CACHE_TESTING="test/cacheTesting.txt";
+	public static final String SPECIAL_TESTING="test/specialTesting.txt";
 	DictCache dc=new DictCache();
 	@Test
 	public void testDictCache() {
@@ -53,19 +56,13 @@ public class DictCacheTest {
 	
 	@Test
 	public void testReadCache(){
-		dc.setFile(new File("dicTesting.txt"));
+		dc.setFile(new File(DIC_TESTING));
 		dc.readCache();
 		assertTrue(dc.getDictionary().size()==5);
 		assertTrue(dc.getDictionary().get("HI")!=null);
 		
 		dc.readCache();
 		assertTrue(dc.getDictionary().size()==5);
-	}
-	
-	@Test
-	public void testReadDictFile(){
-		dc.readDictFile("dicTesting.txt");
-		assertTrue(dc.getDictionary().get("HI")!=null);
 	}
 	
 	@Test
@@ -92,7 +89,7 @@ public class DictCacheTest {
 	
 	@Test
 	public void testWriteFile(){
-		dc.setFile(new File("cacheTesting.txt"));
+		dc.setFile(new File(CACHE_TESTING));
 		ArrayList<String> array=new ArrayList<String>();
 		array.add("Hi");
 		array.add("Ho");
@@ -106,8 +103,11 @@ public class DictCacheTest {
 	@Test
 	public void testReadSpecialFile(){
 		dc.getDictionary().clear();
-		dc.readSpecialFile("specialTesting.txt");
+		dc.readSpecialFile(new File(SPECIAL_TESTING));
 		assertTrue(dc.getDictionary().size()==12);
+		
+		dc.readSpecialFile(new File("dict/3.txt"));
+		assertTrue(dc.wordExists("are"));
 	}
 	
 	@Test
