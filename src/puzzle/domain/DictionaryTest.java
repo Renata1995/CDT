@@ -1,4 +1,4 @@
-package cache.domain;
+package puzzle.domain;
 
 import static org.junit.Assert.*;
 
@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-public class DictCacheTest {
+public class DictionaryTest {
 	
 	public static final String DIC_TESTING="test/dicTesting.txt";
 	public static final String CACHE_TESTING="test/cacheTesting.txt";
 	public static final String SPECIAL_TESTING="test/specialTesting.txt";
-	DictCache dc=new DictCache();
+	Dictionary dc=new Dictionary();
 	@Test
 	public void testDictCache() {
 		assertNotNull(dc.getDictionary());
@@ -21,7 +21,7 @@ public class DictCacheTest {
 	
 	@Test
 	public void testSortAllWords(){
-		DictCache d=new DictCache();
+		Dictionary d=new Dictionary();
 		d.getDictionary().clear();
 		
 		d.getDictionary().put("Add","Add");
