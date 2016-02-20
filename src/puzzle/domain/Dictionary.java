@@ -1,4 +1,4 @@
-package cache.domain;
+package puzzle.domain;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,7 +20,7 @@ import java.util.Hashtable;
  * @author CDT
  *
  */
-public class DictCache {
+public class Dictionary {
 	private HashMap<String,String> dictionary;//All uppercase
 	private File file;//stores words
 	private int count;//the total amount of words
@@ -32,7 +32,7 @@ public class DictCache {
 	 * If cache exists and is updated, read the cache file.
 	 * Otherwise, create a new cache file.
 	 */
-	public DictCache(){
+	public Dictionary(){
 		//Initiate the dictionary
 		dictionary=new HashMap<String,String>(1000000);
 		//Initiate the file
