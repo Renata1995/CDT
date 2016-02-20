@@ -9,9 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Hashtable;
+import com.google.common.base.Stopwatch;
 
 /**
  * Manage words cache. This class has a dictionary HashMap for searching and a file which
@@ -114,15 +113,15 @@ public class Dictionary {
 	 * dictionary hashmaps
 	 */
 	public void createDictCache(){
+		Stopwatch timer = Stopwatch.createStarted();
 		//Read all dictionary files
-		long start=System.nanoTime();
 		readAllDictFiles();//ReadAllDictFiles put all words in the dictionary map without repetition 
 		//sort all words
 		ArrayList<String> allwords=sortWords();
-		long end=System.nanoTime();
-		System.out.println(end-start);
 		//put words into a new cache file
 		writeFile(allwords);
+		//display elapsed time for complete process
+		System.out.println("Cached the dictionary in " +timer.stop()+ ".");
 	}
 
 
@@ -265,7 +264,6 @@ public class Dictionary {
 	protected void setFile(File file) {
 		this.file = file;
 	}
-
 
 
 	public int getCount() {
