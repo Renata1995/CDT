@@ -24,7 +24,7 @@ public class DictCache {
 	private HashMap<String,String> dictionary;//All uppercase
 	private File file;//stores words
 	private int count;//the total amount of words
-	public static final String FILE_NAME="dict/dictCache.txt";
+	public static final String FILE_NAME="cache/dictCache.txt";
 
 
 	/**
