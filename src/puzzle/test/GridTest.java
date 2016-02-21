@@ -72,6 +72,7 @@ public class GridTest {
 		int expect=0;
 		for(int i=0;i<size;i++){
 			for(int j=0;j<size;j++){
+<<<<<<< HEAD
 				expect+=findPermutations(i, j, size, 8, new Hashtable<String,String>());
 			}
 		}
@@ -82,6 +83,17 @@ public class GridTest {
 		assertTrue(expect==actual);
 
 		System.out.println(grid.getPuzzle());
+=======
+				expect+=findPermutations(i, j, size, 12, new Hashtable<String,String>());
+			}
+		}
+
+		int actual=grid.findAllPermutaions(3).size();
+//		assertTrue(expect==actual);
+		
+//		System.out.println(grid.getPuzzle());
+//		System.out.println(grid.findAllPermutaions(3));
+>>>>>>> refs/remotes/upstream/master
 		System.out.println(expect);
 
 	}

@@ -5,11 +5,14 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.SpinnerNumberModel;
 
 @SuppressWarnings("serial")
@@ -42,6 +45,8 @@ public class WordPanel extends JPanel {
 		lengthSpinner.setSize(new Dimension(200,20));
 		lengthSpinner.setMinimumSize(new Dimension(50,20));
 		lengthSpinner.setPreferredSize(new Dimension(50,20));
+		lengthSpinner.setEditor(new JSpinner.DefaultEditor(lengthSpinner)); //sets the spinner to be uneditable
+		((DefaultEditor) lengthSpinner.getEditor()).getTextField().setHorizontalAlignment(JTextField.CENTER); //centers the spinner value
 		north.add(lengthSpinner);
 		View.setFont(lengthSpinner,30);
 		
