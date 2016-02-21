@@ -27,8 +27,8 @@ public class Grid {
 		results=new ArrayList<String>();
 		rand=new Random();
 	}
-	
-	
+
+
 
 	/**
 	 * Generate a new grid 2D array. For testing Purpose
@@ -48,7 +48,7 @@ public class Grid {
 	}
 
 
-	
+
 	/**
 	 * Find all possible letter combinations of a specific length
 	 * 
@@ -72,7 +72,7 @@ public class Grid {
 		return results;
 	}
 
-	
+
 	/**
 	 * Find all possible letter combinations of a specific length at a specific location
 	 * @int i & int j: the indexes of the current position
@@ -82,7 +82,8 @@ public class Grid {
 	 * @usedSet used positions
 	 * @throws WordLengthNotValidException 
 	 */
-	public ArrayList<String> findPermutations(int i, int j, int m, Hashtable<String,String> usedSet) throws WordLengthNotValidException{
+	public ArrayList<String> findPermutations(int i, int j, int m, Hashtable<String,String> usedSet) {
+		ArrayList<String> allPermutations=new ArrayList<String>();
 		/*
 		 * Exceptions are used to make sure the initiation i and j are valid index. 
 		 * 
@@ -90,9 +91,9 @@ public class Grid {
 		 * the exception thrown will be catched in this method.
 		 */
 		if(i<0||i>=size||j<0||j>=size){
-			throw new IndexOutOfBoundsException();
+			return allPermutations;
 		}else if(m<=0||m>size*size ){
-			throw new WordLengthNotValidException("Word length is not valid");
+			return allPermutations;
 		}
 
 		//Current letter
@@ -100,7 +101,6 @@ public class Grid {
 		String indexStr=i+""+j;
 		usedSet.put(indexStr,indexStr);
 
-		ArrayList<String> allPermutations=new ArrayList<String>();
 
 		/*
 		 * When the length of target words is equal to 1, return the letter itself
@@ -116,29 +116,23 @@ public class Grid {
 		for(int a=-1;a<2;a++){
 			for (int b=-1;b<2;b++){
 				String strIndex=(i+a)+""+(j+b);
-				
+
 				if(usedSet.get(strIndex)==null){
 					Hashtable<String,String> newUsedSet=(Hashtable<String, String>) usedSet.clone();
-					
-					try{
-						//Append permutations to the current letter
-						ArrayList<String> results=append(letter,findPermutations(i+a,j+b,m-1,newUsedSet));
-						allPermutations.addAll(results);
-					
-					}catch(IndexOutOfBoundsException e){
 
-					
-					}catch(WordLengthNotValidException e){
+					//Append permutations to the current letter
+					ArrayList<String> results=append(letter,findPermutations(i+a,j+b,m-1,newUsedSet));
+					allPermutations.addAll(results);
 
-					}
+
 				}
-				
+
 			}
 		}
 		return allPermutations;
 	}
 
-	
+
 
 	/**
 	 * Add a letter to the beginning of each word in an arrayList
@@ -154,7 +148,7 @@ public class Grid {
 		return newWords;
 	}
 
-	
+
 
 	/**
 	 * Set the size of the 2D array

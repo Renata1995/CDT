@@ -46,7 +46,7 @@ public class GridTest {
 	}
 
 	@Test
-	public void testFindPermutations() throws SizeOutOfBoundsException, WordLengthNotValidException{
+	public void testFindPermutations() throws SizeOutOfBoundsException {
 		int size=3;
 		grid.generate(size);
 
@@ -59,27 +59,30 @@ public class GridTest {
 			int expectSize=findPermutations(indexI,indexJ,size,m,new Hashtable<String,String>());
 			assertTrue(actualSize==expectSize);
 		}
-		
+
+
 	}
 
 
 	@Test
 	public void testFindPossibleWords() throws SizeOutOfBoundsException, WordLengthNotValidException{
-		int size=2;
+		int size=4;
 		grid.generate(size);
 
 		int expect=0;
 		for(int i=0;i<size;i++){
 			for(int j=0;j<size;j++){
-				expect+=findPermutations(i, j, size, 3, new Hashtable<String,String>());
+				expect+=findPermutations(i, j, size, 10, new Hashtable<String,String>());
 			}
 		}
-
-		int actual=grid.findAllPermutaions(3).size();
+		long time1=System.nanoTime();
+		int actual=grid.findAllPermutaions(10).size();
+		long time2=System.nanoTime();
+		System.out.println((time2-time1)/1000000000);
 		assertTrue(expect==actual);
-		
+
 		System.out.println(grid.getPuzzle());
-		System.out.println(grid.findAllPermutaions(3));
+		System.out.println(expect);
 
 	}
 
@@ -95,13 +98,13 @@ public class GridTest {
 	 * @return
 	 * @throws WordLengthNotValidException
 	 */
-	public int findPermutations(int i, int j,int size, int m, Hashtable<String,String> usedSet) throws WordLengthNotValidException{
+	public int findPermutations(int i, int j,int size, int m, Hashtable<String,String> usedSet){
 		int sum = 0;
-		
+
 		if(i<0||i>=size||j<0||j>=size){
-			throw new IndexOutOfBoundsException();
+			return sum;
 		}else if(m<=0||m>size*size ){
-			throw new WordLengthNotValidException("Word length is not valid");
+			return sum;
 		}
 
 		//Current letter
@@ -127,13 +130,9 @@ public class GridTest {
 
 				if(usedSet.get(strIndex)==null){
 					Hashtable<String,String> newUsedSet=(Hashtable<String, String>) usedSet.clone();
-					try{
-						sum+=findPermutations(i+a,j+b,size,m-1,newUsedSet);
-					}catch(IndexOutOfBoundsException e){
 
-					}catch(WordLengthNotValidException e){
+					sum+=findPermutations(i+a,j+b,size,m-1,newUsedSet);
 
-					}
 				}
 
 			}
