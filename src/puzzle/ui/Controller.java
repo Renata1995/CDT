@@ -58,7 +58,12 @@ public class Controller {
 			try {
 				Stopwatch timer = Stopwatch.createStarted();
 				String[] words = m.findValidWords((int)(v.getWordP().getSpinner().getValue()));
-				v.getWordP().getList().setListData(words);
+				if (words.length==0 || words==null){
+					v.getWordP().getList().setListData(new String[] {"NO VALID WORDS FOUND"});
+				}
+				else{
+					v.getWordP().getList().setListData(words);
+				}
 				v.getWordP().getTimeLabel().setText("TIME ELAPSED: " + timer.stop()+ ".");
 			} catch (WordLengthNotValidException e) {
 				// TODO Auto-generated catch block
