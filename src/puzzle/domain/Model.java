@@ -28,7 +28,7 @@ public class Model {
 	 * @return
 	 * @throws WordLengthNotValidException
 	 */
-	public String[] findValidWords(int m) throws WordLengthNotValidException{
+	public String[] findValidWords(int m){
 		Hashtable<String,String> results=new Hashtable<String,String>();
 		for(String word: grid.findAllPermutaions(m)){
 			if(dict.wordExists(word)){

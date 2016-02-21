@@ -20,8 +20,8 @@ public class Controller {
 	private Model m;
 	private View v;
 	private int size;//the size of the puzzle
-	
-	
+
+
 	/**
 	 * Execute the program
 	 * @param args
@@ -30,7 +30,7 @@ public class Controller {
 		@SuppressWarnings("unused")
 		Controller c = new Controller();
 	}
-	
+
 	/**
 	 * Construct a new Controller instance
 	 */
@@ -41,7 +41,7 @@ public class Controller {
 		v.getSizeButton().addActionListener(new SizeListener());
 		v.getGridP().getSubmitLetters().addActionListener(new LetterListener());
 	}
-	
+
 	/**
 	 * This ActionListener has following functions
 	 * 1. Get a required length variable from the user 
@@ -55,21 +55,17 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			try {
-				Stopwatch timer = Stopwatch.createStarted();
-				String[] words = m.findValidWords((int)(v.getWordP().getSpinner().getValue()));
-				v.getWordP().getList().setListData(words);
-				v.getWordP().getTimeLabel().setText("TIME ELAPSED: " + timer.stop()+ ".");
-			} catch (WordLengthNotValidException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
+			Stopwatch timer = Stopwatch.createStarted();
+			String[] words = m.findValidWords((int)(v.getWordP().getSpinner().getValue()));
+			v.getWordP().getList().setListData(words);
+			v.getWordP().getTimeLabel().setText("TIME ELAPSED: " + timer.stop()+ ".");
+
+
+
 		}
-		
+
 	}
-	
+
 	/**
 	 * This ActionListener has following functions
 	 * 1. Get a required size variable from the user
@@ -89,9 +85,9 @@ public class Controller {
 			size=gridSize;
 			v.getWordP().getSpinner().setModel(new SpinnerNumberModel(2,2,size*size,1));
 		}
-		
+
 	}
-	
+
 	/**
 	 * Pass letters entered by the user to the model
 	 *
@@ -112,8 +108,8 @@ public class Controller {
 					current.add(l.getText());
 				}
 			}
-			
-			
+
+
 			try {
 				//set the 2d arraylist to the model
 				m.getGrid().setSize(size);
@@ -122,20 +118,20 @@ public class Controller {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
+
 			//set submitLetters button and title instruction invisible
 			v.getGridP().getSubmitLetters().setVisible(false);
 			v.getGridP().getTitle().setVisible(false);
 			v.getWordP().setVisible(true);
 		}
-		
+
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	public Model getModel() {
 		return m;
 	}

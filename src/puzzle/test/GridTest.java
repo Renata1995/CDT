@@ -72,11 +72,11 @@ public class GridTest {
 		int expect=0;
 		for(int i=0;i<size;i++){
 			for(int j=0;j<size;j++){
-				expect+=findPermutations(i, j, size, 10, new Hashtable<String,String>());
+				expect+=findPermutations(i, j, size, 8, new Hashtable<String,String>());
 			}
 		}
 		long time1=System.nanoTime();
-		int actual=grid.findAllPermutaions(10).size();
+		int actual=grid.findAllPermutaions(8).size();
 		long time2=System.nanoTime();
 		System.out.println((time2-time1)/1000000000);
 		assertTrue(expect==actual);

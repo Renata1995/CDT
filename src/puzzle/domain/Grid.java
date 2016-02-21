@@ -56,11 +56,11 @@ public class Grid {
 	 * @return
 	 * @throws WordLengthNotValidException 
 	 */
-	public ArrayList<String> findAllPermutaions(int m) throws WordLengthNotValidException{
+	public ArrayList<String> findAllPermutaions(int m){
 		results.clear();
 
 		//usedSet stores used positions by storing the sum of two indexes of each position
-		Hashtable<String,String> usedSet=new Hashtable<String,String>(size*size*2);
+		Hashtable<String,String> usedSet=new Hashtable<String,String>(m*2);
 
 		for(int i=0;i<size;i++){
 			for(int j=0;j<size;j++){
