@@ -3,6 +3,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.SpinnerNumberModel;
+
+import com.google.common.base.Stopwatch;
+
 import puzzle.domain.*;
 import puzzle.util.SizeOutOfBoundsException;
 import puzzle.util.WordLengthNotValidException;
@@ -52,9 +56,10 @@ public class Controller {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			try {
+				Stopwatch timer = Stopwatch.createStarted();
 				String[] words = m.findValidWords((int)(v.getWordP().getSpinner().getValue()));
 				v.getWordP().getList().setListData(words);
-			
+				v.getWordP().getTimeLabel().setText("TIME ELAPSED: " + timer.stop()+ ".");
 			} catch (WordLengthNotValidException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -82,6 +87,7 @@ public class Controller {
 			//Set the size of the Grid and the GridPanel 
 			v.getGridP().generateGrid(gridSize);	
 			size=gridSize;
+			v.getWordP().getSpinner().setModel(new SpinnerNumberModel(2,2,size*size,1));
 		}
 		
 	}

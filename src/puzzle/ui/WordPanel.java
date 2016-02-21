@@ -51,18 +51,23 @@ public class WordPanel extends JPanel {
 		
 		wordPane = new JScrollPane();
 		wordList = new JList<String>();
-		View.setFont(wordList,20);
+		View.setFont(wordList,30);
 		
 		wordPane.setViewportView(wordList);
 		wordPane.setPreferredSize(new Dimension(480,400));
 		
 		timeLabel = new JLabel("TIME ELAPSED: ");
+		timeLabel.setHorizontalAlignment(JLabel.CENTER);
 		View.setFont(timeLabel, 20);
 		
 		add(north,BorderLayout.NORTH);
 		add(wordPane,BorderLayout.CENTER);
 		add(timeLabel,BorderLayout.SOUTH);
 		
+	}
+	
+	public JLabel getTimeLabel(){
+		return timeLabel;
 	}
 	
 	public JScrollPane getScrollPane(){

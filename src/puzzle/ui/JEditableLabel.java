@@ -1,18 +1,10 @@
 package puzzle.ui;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -23,9 +15,10 @@ import javax.swing.border.LineBorder;
  * The method is from community.oracle.com
  *
  */
+@SuppressWarnings("serial")
 public class JEditableLabel extends JPanel{
 	private JLabel lb;
-	private JComboBox box;//JComboBox is used to prevent invalid input
+	private JComboBox<String> box;//JComboBox is used to prevent invalid input
 	private CardLayout card;
 	private String text;
 
@@ -41,8 +34,8 @@ public class JEditableLabel extends JPanel{
 		setLayout(card);
 
 		String[] letters="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z".split(",");
-		DefaultComboBoxModel m=new DefaultComboBoxModel(letters);
-		box=new JComboBox(m);
+		DefaultComboBoxModel<String> m=new DefaultComboBoxModel<String>(letters);
+		box=new JComboBox<String>(m);
 		box.setSelectedItem(letters[0]);
 		box.setVisible(true);
 		add(box);
@@ -104,19 +97,7 @@ public class JEditableLabel extends JPanel{
 
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 	/**
 	 * Getters and Setters
 	 * @return
@@ -133,11 +114,11 @@ public class JEditableLabel extends JPanel{
 		this.lb = lb;
 	}
 
-	public JComboBox getBox() {
+	public JComboBox<String> getBox() {
 		return box;
 	}
 
-	public void setBox(JComboBox box) {
+	public void setBox(JComboBox<String> box) {
 		this.box = box;
 	}
 

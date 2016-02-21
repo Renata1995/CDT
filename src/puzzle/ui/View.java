@@ -120,11 +120,6 @@ public class View extends JFrame{
 	}
 	
 	
-	
-	
-	
-	
-	
 	/**
 	 * Getters and Setters
 	 * @return
