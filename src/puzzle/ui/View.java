@@ -103,6 +103,7 @@ public class View extends JFrame{
 				gridP.getEditableGrid().removeAll();
 				wordP.getList().setListData(new String[0]);
 				wordP.setVisible(false);
+				wordP.getSpinner().setValue(2);
 			}
 			
 		});

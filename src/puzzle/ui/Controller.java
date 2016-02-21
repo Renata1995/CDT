@@ -54,17 +54,7 @@ public class Controller {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-<<<<<<< HEAD
-			Stopwatch timer = Stopwatch.createStarted();
-			String[] words = m.findValidWords((int)(v.getWordP().getSpinner().getValue()));
-			v.getWordP().getList().setListData(words);
-			v.getWordP().getTimeLabel().setText("TIME ELAPSED: " + timer.stop()+ ".");
-
-
-
-=======
-			try {
+			// TODO Auto-generated method stub			
 				Stopwatch timer = Stopwatch.createStarted();
 				String[] words = m.findValidWords((int)(v.getWordP().getSpinner().getValue()));
 				if (words.length==0 || words==null){
@@ -74,13 +64,6 @@ public class Controller {
 					v.getWordP().getList().setListData(words);
 				}
 				v.getWordP().getTimeLabel().setText("TIME ELAPSED: " + timer.stop()+ ".");
-			} catch (WordLengthNotValidException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
->>>>>>> refs/remotes/upstream/master
 		}
 
 	}
