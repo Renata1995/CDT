@@ -261,7 +261,7 @@ public class Dictionary {
 		return file;
 	}
 
-	protected void setFile(File file) {
+	public void setFile(File file) {
 		this.file = file;
 	}
 

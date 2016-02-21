@@ -27,9 +27,11 @@ public class Grid {
 		results=new ArrayList<String>();
 		rand=new Random();
 	}
+	
+	
 
 	/**
-	 * Generate a new grid 2D array
+	 * Generate a new grid 2D array. For testing Purpose
 	 * @param s
 	 * @throws SizeOutOfBoundsException
 	 */
@@ -45,6 +47,8 @@ public class Grid {
 		}
 	}
 
+
+	
 	/**
 	 * Find all possible letter combinations of a specific length
 	 * 
@@ -68,6 +72,7 @@ public class Grid {
 		return results;
 	}
 
+	
 	/**
 	 * Find all possible letter combinations of a specific length at a specific location
 	 * @int i & int j: the indexes of the current position
@@ -105,7 +110,7 @@ public class Grid {
 			return allPermutations;
 		}
 
-		/* When the length of target words is not equal to 1, find possible combinations with m-1 length of its eight
+		/* When the length of target words is not equal to 1, find possible permutations with m-1 length of its eight
 		 * neighbors
 		 */		
 		for(int a=-1;a<2;a++){
@@ -114,12 +119,15 @@ public class Grid {
 				
 				if(usedSet.get(strIndex)==null){
 					Hashtable<String,String> newUsedSet=(Hashtable<String, String>) usedSet.clone();
+					
 					try{
-						//Append permutaions to the current letter
+						//Append permutations to the current letter
 						ArrayList<String> results=append(letter,findPermutations(i+a,j+b,m-1,newUsedSet));
 						allPermutations.addAll(results);
+					
 					}catch(IndexOutOfBoundsException e){
 
+					
 					}catch(WordLengthNotValidException e){
 
 					}
@@ -130,6 +138,7 @@ public class Grid {
 		return allPermutations;
 	}
 
+	
 
 	/**
 	 * Add a letter to the beginning of each word in an arrayList
@@ -139,13 +148,13 @@ public class Grid {
 	public ArrayList<String> append(String letter, ArrayList<String> words){
 		ArrayList<String> newWords=new ArrayList<String>();
 		for(String str:words){
-			String copy=String.valueOf(str.toCharArray());
-			str=letter+copy;
-			newWords.add(str);
+			String newWord=letter+str;
+			newWords.add(newWord);
 		}
 		return newWords;
 	}
 
+	
 
 	/**
 	 * Set the size of the 2D array
