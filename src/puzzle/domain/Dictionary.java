@@ -1,4 +1,4 @@
-package cache.domain;
+package puzzle.domain;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,9 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Hashtable;
+import com.google.common.base.Stopwatch;
 
 /**
  * Manage words cache. This class has a dictionary HashMap for searching and a file which
@@ -20,7 +19,7 @@ import java.util.Hashtable;
  * @author CDT
  *
  */
-public class DictCache {
+public class Dictionary {
 	private HashMap<String,String> dictionary;//All uppercase
 	private File file;//stores words
 	private int count;//the total amount of words
@@ -32,7 +31,7 @@ public class DictCache {
 	 * If cache exists and is updated, read the cache file.
 	 * Otherwise, create a new cache file.
 	 */
-	public DictCache(){
+	public Dictionary(){
 		//Initiate the dictionary
 		dictionary=new HashMap<String,String>(1000000);
 		//Initiate the file
@@ -114,15 +113,15 @@ public class DictCache {
 	 * dictionary hashmaps
 	 */
 	public void createDictCache(){
+		Stopwatch timer = Stopwatch.createStarted();
 		//Read all dictionary files
-		long start=System.nanoTime();
 		readAllDictFiles();//ReadAllDictFiles put all words in the dictionary map without repetition 
 		//sort all words
 		ArrayList<String> allwords=sortWords();
-		long end=System.nanoTime();
-		System.out.println(end-start);
 		//put words into a new cache file
 		writeFile(allwords);
+		//display elapsed time for complete process
+		System.out.println("Cached the dictionary in " +timer.stop()+ ".");
 	}
 
 
@@ -262,21 +261,13 @@ public class DictCache {
 		return file;
 	}
 
-	protected void setFile(File file) {
+	public void setFile(File file) {
 		this.file = file;
 	}
-
 
 
 	public int getCount() {
 		return count;
 	}
-
-
-
-
-
-
-
 
 }
