@@ -23,20 +23,12 @@ public class Model {
 	}
 	
 	/**
-	 * Generate a size*size puzzle
-	 * @throws SizeOutOfBoundsException 
-	 */
-	public void generate(int size) throws SizeOutOfBoundsException{
-		grid.generate(size);
-	}
-
-	/**
 	 * Find all valid words
 	 * @param m
 	 * @return
 	 * @throws WordLengthNotValidException
 	 */
-	public Hashtable<String,String> findValidWords(int m) throws WordLengthNotValidException{
+	public String[] findValidWords(int m) throws WordLengthNotValidException{
 		Hashtable<String,String> results=new Hashtable<String,String>();
 		for(String word: grid.findAllPermutaions(m)){
 			if(dict.wordExists(word)){
@@ -45,9 +37,19 @@ public class Model {
 				}
 			}
 		}
-		return results;
+		String[] finalList=new String[results.size()];
+		results.keySet().toArray(finalList);
+		
+		return finalList;
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	public Grid getGrid() {
 		return grid;
 	}

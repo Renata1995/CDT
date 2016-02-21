@@ -1,6 +1,9 @@
 package puzzle.ui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -32,26 +35,33 @@ public class WordPanel extends JPanel {
 		 * 
 		 * 
 		 */
-		
+		this.setLayout(new BorderLayout(20,20));
+		JPanel north=new JPanel();
+		north.setLayout(new GridLayout(1,2,20,20));
 		lengthSpinner = new JSpinner(new SpinnerNumberModel(2, 2, 2, 1));
 		lengthSpinner.setSize(new Dimension(200,20));
 		lengthSpinner.setMinimumSize(new Dimension(50,20));
 		lengthSpinner.setPreferredSize(new Dimension(50,20));
+		north.add(lengthSpinner);
+		View.setFont(lengthSpinner,30);
 		
 		submitButton = new JButton("Submit");
+		north.add(submitButton);
+		View.setFont(submitButton,30);
 		
 		wordPane = new JScrollPane();
 		wordList = new JList<String>();
+		View.setFont(wordList,20);
 		
 		wordPane.setViewportView(wordList);
 		wordPane.setPreferredSize(new Dimension(480,400));
 		
 		timeLabel = new JLabel("TIME ELAPSED: ");
+		View.setFont(timeLabel, 20);
 		
-		add(lengthSpinner);
-		add(submitButton);
-		add(wordPane);
-		add(timeLabel);
+		add(north,BorderLayout.NORTH);
+		add(wordPane,BorderLayout.CENTER);
+		add(timeLabel,BorderLayout.SOUTH);
 		
 	}
 	
