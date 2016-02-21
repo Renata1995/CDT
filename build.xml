@@ -3,17 +3,17 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="03-akthomas-WordGame">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="02CDT_WordPuzzle">
     <property environment="env"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
     <path id="JUnit 4.libraryclasspath">
-        <pathelement location="../../../../../../../../Program Files/Eclipse/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
-        <pathelement location="../../../../../../../../Program Files/Eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+        <pathelement location="D:/Program Files/eclipse-java-luna-SR1-win32-x86_64/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
+        <pathelement location="D:/Program Files/eclipse-java-luna-SR1-win32-x86_64/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
     </path>
-    <path id="03-akthomas-WordGame.classpath">
+    <path id="02CDT_WordPuzzle.classpath">
         <pathelement location="bin"/>
         <path refid="JUnit 4.libraryclasspath"/>
         <pathelement location="guava-18.0.jar"/>
@@ -37,7 +37,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="03-akthomas-WordGame.classpath"/>
+            <classpath refid="02CDT_WordPuzzle.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -54,27 +54,48 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Controller">
+    <target name="Controller (5)">
         <java classname="puzzle.ui.Controller" failonerror="true" fork="yes">
-            <classpath refid="03-akthomas-WordGame.classpath"/>
+            <classpath refid="02CDT_WordPuzzle.classpath"/>
         </java>
     </target>
-    <target name="DictCacheTest">
+    <target name="DictionaryTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="cache.domain.DictCacheTest" todir="${junit.output.dir}"/>
-            <classpath refid="03-akthomas-WordGame.classpath"/>
+            <test name="puzzle.test.DictionaryTest" todir="${junit.output.dir}"/>
+            <classpath refid="02CDT_WordPuzzle.classpath"/>
         </junit>
     </target>
-    <target name="test">
-        <java classname="puzzle.test.test" failonerror="true" fork="yes">
-            <classpath refid="03-akthomas-WordGame.classpath"/>
+    <target name="GridTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="puzzle.test.GridTest" todir="${junit.output.dir}"/>
+            <classpath refid="02CDT_WordPuzzle.classpath"/>
+        </junit>
+    </target>
+    <target name="ModelTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="puzzle.test.ModelTest" todir="${junit.output.dir}"/>
+            <classpath refid="02CDT_WordPuzzle.classpath"/>
+        </junit>
+    </target>
+    <target name="testing (1)">
+        <java classname="puzzle.domain.testing" failonerror="true" fork="yes">
+            <classpath refid="02CDT_WordPuzzle.classpath"/>
         </java>
     </target>
     <target name="UserController">
-        <java classname="cache.ui.UserController" failonerror="true" fork="yes">
-            <classpath refid="03-akthomas-WordGame.classpath"/>
+        <java classname="puzzle.ui.UserController" failonerror="true" fork="yes">
+            <classpath refid="02CDT_WordPuzzle.classpath"/>
+        </java>
+    </target>
+    <target name="View (1)">
+        <java classname="puzzle.ui.View" failonerror="true" fork="yes">
+            <classpath refid="02CDT_WordPuzzle.classpath"/>
         </java>
     </target>
     <target name="junitreport">
