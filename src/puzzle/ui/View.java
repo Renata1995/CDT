@@ -104,6 +104,7 @@ public class View extends JFrame{
 				wordP.getList().setListData(new String[0]);
 				wordP.setVisible(false);
 				wordP.getSpinner().setValue(2);
+				wordP.getTimeLabel().setText("TIME ELAPSED: ");
 			}
 			
 		});
