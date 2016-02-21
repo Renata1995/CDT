@@ -1,6 +1,5 @@
 package puzzle.domain;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 import puzzle.util.SizeOutOfBoundsException;

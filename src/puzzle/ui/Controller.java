@@ -14,7 +14,8 @@ public class Controller {
 	View v;
 	
 	public static void main(String[] args){
-		Controller c=new Controller();
+		@SuppressWarnings("unused")
+		Controller c = new Controller();
 	}
 	
 	/**

@@ -1,19 +1,22 @@
 package puzzle.ui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+@SuppressWarnings("serial")
 public class WordPanel extends JPanel {
 	private JButton submitButton; //The button that will submit the length of target words to the controller
 	private JSpinner lengthSpinner;
 	private JList<String> wordList;
 	private JScrollPane wordPane;
+	private JLabel timeLabel;
+	
 	/*...*/
 	public WordPanel(){
 		super();
@@ -30,21 +33,25 @@ public class WordPanel extends JPanel {
 		 * 
 		 */
 		
+		lengthSpinner = new JSpinner(new SpinnerNumberModel(2, 2, 2, 1));
+		lengthSpinner.setSize(new Dimension(200,20));
+		lengthSpinner.setMinimumSize(new Dimension(50,20));
+		lengthSpinner.setPreferredSize(new Dimension(50,20));
+		
+		submitButton = new JButton("Submit");
+		
 		wordPane = new JScrollPane();
 		wordList = new JList<String>();
 		
 		wordPane.setViewportView(wordList);
-		wordPane.setPreferredSize(new Dimension(480,445));
+		wordPane.setPreferredSize(new Dimension(480,400));
 		
-		lengthSpinner = new JSpinner(new SpinnerNumberModel(2, 2, 2, 1)); 
-		submitButton = new JButton("Submit");
+		timeLabel = new JLabel("TIME ELAPSED: ");
 		
 		add(lengthSpinner);
 		add(submitButton);
 		add(wordPane);
-		
-		
-		
+		add(timeLabel);
 		
 	}
 	
@@ -52,7 +59,7 @@ public class WordPanel extends JPanel {
 		return wordPane;
 	}
 	
-	public JSpinner getSlider(){
+	public JSpinner getSpinner(){
 		return lengthSpinner;
 	}
 	

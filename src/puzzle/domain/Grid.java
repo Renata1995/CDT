@@ -158,18 +158,6 @@ public class Grid {
 		}
 	}
 
-
-	
-	
-	
-
-
-
-
-
-
-
-
 	/**
 	 * Getters and Setters
 	 * @return
