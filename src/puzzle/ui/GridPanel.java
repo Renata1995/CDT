@@ -3,17 +3,13 @@ package puzzle.ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class GridPanel extends JPanel {	
 
 	private static final Color C1=Color.WHITE;
@@ -45,7 +41,7 @@ public class GridPanel extends JPanel {
 		this.add(editableGrid,BorderLayout.CENTER);
 		
 		//submit button
-		submitLetters=new JButton("Submit");
+		submitLetters=new JButton("SUBMIT");
 		this.add(submitLetters,BorderLayout.SOUTH);
 		View.setFont(submitLetters, 30);
 	}

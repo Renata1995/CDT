@@ -4,12 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.SpinnerNumberModel;
 
 @SuppressWarnings("serial")
@@ -18,6 +22,7 @@ public class WordPanel extends JPanel {
 	private JSpinner lengthSpinner;
 	private JList<String> wordList;
 	private JScrollPane wordPane;
+	private JLabel permutationLabel;
 	private JLabel timeLabel;
 	
 	/*...*/
@@ -42,27 +47,49 @@ public class WordPanel extends JPanel {
 		lengthSpinner.setSize(new Dimension(200,20));
 		lengthSpinner.setMinimumSize(new Dimension(50,20));
 		lengthSpinner.setPreferredSize(new Dimension(50,20));
+		lengthSpinner.setEditor(new JSpinner.DefaultEditor(lengthSpinner)); //sets the spinner to be uneditable
+		((DefaultEditor) lengthSpinner.getEditor()).getTextField().setHorizontalAlignment(JTextField.CENTER); //centers the spinner value
 		north.add(lengthSpinner);
 		View.setFont(lengthSpinner,30);
 		
-		submitButton = new JButton("Submit");
+		submitButton = new JButton("SUBMIT");
 		north.add(submitButton);
 		View.setFont(submitButton,30);
 		
 		wordPane = new JScrollPane();
 		wordList = new JList<String>();
-		View.setFont(wordList,20);
+		View.setFont(wordList,30);
 		
 		wordPane.setViewportView(wordList);
 		wordPane.setPreferredSize(new Dimension(480,400));
 		
-		timeLabel = new JLabel("TIME ELAPSED: ");
-		View.setFont(timeLabel, 20);
+		permutationLabel = new JLabel();
+		permutationLabel.setHorizontalAlignment(JLabel.CENTER);
+		View.setFont(permutationLabel, 15);
+		setPermutationLabel(0,0);
+		
+		timeLabel = new JLabel();
+		timeLabel.setHorizontalAlignment(JLabel.CENTER);
+		View.setFont(timeLabel, 15);
+		setTimeLabel("0");
+		
+		JPanel south = new JPanel();
+		south.add(permutationLabel);
+		south.add(Box.createRigidArea(new Dimension(10,0)));
+		south.add(timeLabel);
 		
 		add(north,BorderLayout.NORTH);
 		add(wordPane,BorderLayout.CENTER);
-		add(timeLabel,BorderLayout.SOUTH);
+		add(south,BorderLayout.SOUTH);
 		
+	}
+	
+	public void setPermutationLabel(int valid, int permutations){
+		permutationLabel.setText("VALID PERMUTATIONS: " +valid+ "/" +permutations);
+	}
+	
+	public void setTimeLabel(String time){
+		timeLabel.setText("TIME ELAPSED: " +time);
 	}
 	
 	public JScrollPane getScrollPane(){

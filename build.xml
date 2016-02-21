@@ -3,48 +3,42 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="02CDT_WordPuzzle">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="03-akthomas-WordGame">
     <property environment="env"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="02CDT_WordPuzzle.classpath"/>
-    <path id="run.Controller (5).classpath">
-        <path refid="02CDT_WordPuzzle.classpath"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="../../../../../../../../Program Files/Eclipse/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="../../../../../../../../Program Files/Eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
     </path>
-    <path id="run.Controller (5).bootclasspath"/>
-    <path id="run.DictionaryTest.classpath">
-        <path refid="02CDT_WordPuzzle.classpath"/>
+    <path id="03-akthomas-WordGame.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="guava-18.0.jar"/>
     </path>
-    <path id="run.DictionaryTest.bootclasspath"/>
-    <path id="run.GridTest.classpath">
-        <path refid="02CDT_WordPuzzle.classpath"/>
-    </path>
-    <path id="run.GridTest.bootclasspath"/>
-    <path id="run.ModelTest.classpath">
-        <path refid="02CDT_WordPuzzle.classpath"/>
-    </path>
-    <path id="run.ModelTest.bootclasspath"/>
-    <path id="run.testing (1).classpath">
-        <path refid="02CDT_WordPuzzle.classpath"/>
-    </path>
-    <path id="run.testing (1).bootclasspath"/>
-    <path id="run.UserController.classpath">
-        <path refid="02CDT_WordPuzzle.classpath"/>
-    </path>
-    <path id="run.UserController.bootclasspath"/>
-    <path id="run.View (1).classpath">
-        <path refid="02CDT_WordPuzzle.classpath"/>
-    </path>
-    <path id="run.View (1).bootclasspath"/>
-    <target name="init"/>
-    <target name="clean"/>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="03-akthomas-WordGame.classpath"/>
+        </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
@@ -60,69 +54,27 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Controller (5)">
+    <target name="Controller">
         <java classname="puzzle.ui.Controller" failonerror="true" fork="yes">
-            <classpath refid="run.Controller (5).classpath"/>
-            <bootclasspath>
-                <path refid="run.Controller (5).bootclasspath"/>
-            </bootclasspath>
+            <classpath refid="03-akthomas-WordGame.classpath"/>
         </java>
     </target>
-    <target name="DictionaryTest">
+    <target name="DictCacheTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="puzzle.test.DictionaryTest" todir="${junit.output.dir}"/>
-            <classpath refid="run.DictionaryTest.classpath"/>
-            <bootclasspath>
-                <path refid="run.DictionaryTest.bootclasspath"/>
-            </bootclasspath>
+            <test name="cache.domain.DictCacheTest" todir="${junit.output.dir}"/>
+            <classpath refid="03-akthomas-WordGame.classpath"/>
         </junit>
     </target>
-    <target name="GridTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="puzzle.test.GridTest" todir="${junit.output.dir}"/>
-            <classpath refid="run.GridTest.classpath"/>
-            <bootclasspath>
-                <path refid="run.GridTest.bootclasspath"/>
-            </bootclasspath>
-        </junit>
-    </target>
-    <target name="ModelTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="puzzle.test.ModelTest" todir="${junit.output.dir}"/>
-            <classpath refid="run.ModelTest.classpath"/>
-            <bootclasspath>
-                <path refid="run.ModelTest.bootclasspath"/>
-            </bootclasspath>
-        </junit>
-    </target>
-    <target name="testing (1)">
-        <java classname="puzzle.domain.testing" failonerror="true" fork="yes">
-            <classpath refid="run.testing (1).classpath"/>
-            <bootclasspath>
-                <path refid="run.testing (1).bootclasspath"/>
-            </bootclasspath>
+    <target name="test">
+        <java classname="puzzle.test.test" failonerror="true" fork="yes">
+            <classpath refid="03-akthomas-WordGame.classpath"/>
         </java>
     </target>
     <target name="UserController">
-        <java classname="puzzle.ui.UserController" failonerror="true" fork="yes">
-            <classpath refid="run.UserController.classpath"/>
-            <bootclasspath>
-                <path refid="run.UserController.bootclasspath"/>
-            </bootclasspath>
-        </java>
-    </target>
-    <target name="View (1)">
-        <java classname="puzzle.ui.View" failonerror="true" fork="yes">
-            <classpath refid="run.View (1).classpath"/>
-            <bootclasspath>
-                <path refid="run.View (1).bootclasspath"/>
-            </bootclasspath>
+        <java classname="cache.ui.UserController" failonerror="true" fork="yes">
+            <classpath refid="03-akthomas-WordGame.classpath"/>
         </java>
     </target>
     <target name="junitreport">
