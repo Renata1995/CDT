@@ -63,7 +63,8 @@ public class Controller {
 				else{
 					v.getWordP().getList().setListData(words);
 				}
-				v.getWordP().getTimeLabel().setText("TIME ELAPSED: " + timer.stop()+ ".");
+				v.getWordP().setTimeLabel(timer.stop().toString());
+				v.getWordP().setPermutationLabel(words.length,m.getNumberOfPermutations());
 		}
 
 	}

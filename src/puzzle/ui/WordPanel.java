@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -21,6 +22,7 @@ public class WordPanel extends JPanel {
 	private JSpinner lengthSpinner;
 	private JList<String> wordList;
 	private JScrollPane wordPane;
+	private JLabel permutationLabel;
 	private JLabel timeLabel;
 	
 	/*...*/
@@ -50,7 +52,7 @@ public class WordPanel extends JPanel {
 		north.add(lengthSpinner);
 		View.setFont(lengthSpinner,30);
 		
-		submitButton = new JButton("Submit");
+		submitButton = new JButton("SUBMIT");
 		north.add(submitButton);
 		View.setFont(submitButton,30);
 		
@@ -61,18 +63,33 @@ public class WordPanel extends JPanel {
 		wordPane.setViewportView(wordList);
 		wordPane.setPreferredSize(new Dimension(480,400));
 		
-		timeLabel = new JLabel("TIME ELAPSED: ");
+		permutationLabel = new JLabel();
+		permutationLabel.setHorizontalAlignment(JLabel.CENTER);
+		View.setFont(permutationLabel, 15);
+		setPermutationLabel(0,0);
+		
+		timeLabel = new JLabel();
 		timeLabel.setHorizontalAlignment(JLabel.CENTER);
-		View.setFont(timeLabel, 20);
+		View.setFont(timeLabel, 15);
+		setTimeLabel("0");
+		
+		JPanel south = new JPanel();
+		south.add(permutationLabel);
+		south.add(Box.createRigidArea(new Dimension(10,0)));
+		south.add(timeLabel);
 		
 		add(north,BorderLayout.NORTH);
 		add(wordPane,BorderLayout.CENTER);
-		add(timeLabel,BorderLayout.SOUTH);
+		add(south,BorderLayout.SOUTH);
 		
 	}
 	
-	public JLabel getTimeLabel(){
-		return timeLabel;
+	public void setPermutationLabel(int valid, int permutations){
+		permutationLabel.setText("VALID PERMUTATIONS: " +valid+ "/" +permutations);
+	}
+	
+	public void setTimeLabel(String time){
+		timeLabel.setText("TIME ELAPSED: " +time);
 	}
 	
 	public JScrollPane getScrollPane(){

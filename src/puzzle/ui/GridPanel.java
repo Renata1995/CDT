@@ -41,7 +41,7 @@ public class GridPanel extends JPanel {
 		this.add(editableGrid,BorderLayout.CENTER);
 		
 		//submit button
-		submitLetters=new JButton("Submit");
+		submitLetters=new JButton("SUBMIT");
 		this.add(submitLetters,BorderLayout.SOUTH);
 		View.setFont(submitLetters, 30);
 	}

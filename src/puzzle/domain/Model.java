@@ -1,5 +1,6 @@
 package puzzle.domain;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import puzzle.util.SizeOutOfBoundsException;
@@ -11,9 +12,10 @@ import puzzle.util.WordLengthNotValidException;
  *
  */
 public class Model {
-	Grid grid;
-	Dictionary dict;
-
+	private Grid grid;
+	private Dictionary dict;
+	private int number;
+	
 	/**
 	 * Construct a model instance
 	 */
@@ -30,7 +32,9 @@ public class Model {
 	 */
 	public String[] findValidWords(int m){
 		Hashtable<String,String> results=new Hashtable<String,String>();
-		for(String word: grid.findAllPermutaions(m)){
+		ArrayList<String> permutations=grid.findAllPermutaions(m);
+		number=permutations.size();
+		for(String word: permutations){
 			if(dict.wordExists(word)){
 				if(results.get(word)==null){//check repetitions
 					results.put(word,word);
@@ -43,12 +47,9 @@ public class Model {
 		return finalList;
 	}
 
-	
-	
-	
-	
-	
-	
+	public int getNumberOfPermutations(){
+		return number;
+	}
 	
 	public Grid getGrid() {
 		return grid;

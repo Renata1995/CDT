@@ -42,7 +42,7 @@ public class View extends JFrame{
 		wordP = new WordPanel();
 		gridP = new GridPanel(HEIGHT*9/10);
 		//You can use cardLayout if needed
-		sizeButton=new JButton("Submit");
+		sizeButton=new JButton("SUBMIT");
 		JPanel main=new JPanel();
 		CardLayout card=new CardLayout();
 		main.setLayout(card);
@@ -67,7 +67,7 @@ public class View extends JFrame{
 		sizeSpin.setPaintLabels(true);
 		sizePanel.add(sizeSpin);
 		
-		sizeButton=new JButton("Submit");
+		sizeButton=new JButton("SUBMIT");
 		sizeButton.setFont(new Font("Times New Roman",Font.BOLD,30));
 		sizePanel.add(sizeButton);
 		sizeButton.addActionListener(new ActionListener(){
@@ -89,7 +89,7 @@ public class View extends JFrame{
 		mainPanel.add(wordP,BorderLayout.EAST);
 		mainPanel.add(gridP,BorderLayout.CENTER);
 		
-		JButton restart=new JButton("Restart");
+		JButton restart=new JButton("RESTART");
 		mainPanel.add(restart, BorderLayout.SOUTH);
 		View.setFont(restart, 30);
 		restart.addActionListener(new ActionListener(){
@@ -104,7 +104,8 @@ public class View extends JFrame{
 				wordP.getList().setListData(new String[0]);
 				wordP.setVisible(false);
 				wordP.getSpinner().setValue(2);
-				wordP.getTimeLabel().setText("TIME ELAPSED: ");
+				wordP.setTimeLabel("0");
+				wordP.setPermutationLabel(0,0);
 			}
 			
 		});
