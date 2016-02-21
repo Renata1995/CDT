@@ -13,6 +13,10 @@ public class Controller {
 	Model m;
 	View v;
 	
+	public static void main(String[] args){
+		Controller c=new Controller();
+	}
+	
 	/**
 	 * Construct a new Controller instance
 	 */
@@ -41,6 +45,9 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
+//			String[] words = m.findValidWords(v.getWordP().getSlider().getValue());
+			String[] words = {"test", "help", "haha"};
+			v.getWordP().getList().setListData(words);
 			
 		}
 		
@@ -78,12 +85,6 @@ public class Controller {
 
 	public View getView() {
 		return v;
-	}
-
-
-
-	public static void main(String[] args){
-		Controller c=new Controller();
 	}
 
 }

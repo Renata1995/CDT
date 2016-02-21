@@ -1,10 +1,19 @@
 package puzzle.ui;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class WordPanel extends JPanel {
-	private JButton submit; //The button that will submit the length of target words to the controller
+	private JButton submitButton; //The button that will submit the length of target words to the controller
+	private JSpinner lengthSpinner;
+	private JList<String> wordList;
+	private JScrollPane wordPane;
 	/*...*/
 	public WordPanel(){
 		super();
@@ -21,11 +30,38 @@ public class WordPanel extends JPanel {
 		 * 
 		 */
 		
+		wordPane = new JScrollPane();
+		wordList = new JList<String>();
+		
+		wordPane.setViewportView(wordList);
+		wordPane.setPreferredSize(new Dimension(480,445));
+		
+		lengthSpinner = new JSpinner(new SpinnerNumberModel(2, 2, 2, 1)); 
+		submitButton = new JButton("Submit");
+		
+		add(lengthSpinner);
+		add(submitButton);
+		add(wordPane);
+		
+		
+		
+		
 	}
 	
+	public JScrollPane getScrollPane(){
+		return wordPane;
+	}
+	
+	public JSpinner getSlider(){
+		return lengthSpinner;
+	}
+	
+	public JList<String> getList(){
+		return wordList;
+	}
 	
 	public JButton getSubmit() {
-		return submit;
+		return submitButton;
 	}
 	
 	
