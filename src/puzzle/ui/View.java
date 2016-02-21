@@ -21,6 +21,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class View extends JFrame{
 	private GridPanel gridP;
 	private WordPanel wordP;
@@ -82,7 +83,7 @@ public class View extends JFrame{
 		
 		//Second Card: Main panel containing the grid and word list
 		JPanel mainPanel=new JPanel();
-		mainPanel.setLayout(new BorderLayout(20,20));
+		mainPanel.setLayout(new BorderLayout(50,30));
 		main.add(mainPanel);
 		
 		mainPanel.add(wordP,BorderLayout.EAST);
@@ -100,9 +101,13 @@ public class View extends JFrame{
 				gridP.getTitle().setVisible(true);
 				gridP.getSubmitLetters().setVisible(true);
 				gridP.getEditableGrid().removeAll();
+				wordP.getList().setListData(new String[0]);
+				wordP.setVisible(false);
 			}
 			
 		});
+		
+		wordP.setVisible(false);
 		
 		
 		

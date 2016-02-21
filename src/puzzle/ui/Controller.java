@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import puzzle.domain.*;
 import puzzle.util.SizeOutOfBoundsException;
+import puzzle.util.WordLengthNotValidException;
 
 /**
  * This program will generate a letter matrix and find all valid words with a specific length
@@ -14,11 +15,16 @@ import puzzle.util.SizeOutOfBoundsException;
 public class Controller {
 	private Model m;
 	private View v;
-	private int size;
+	private int size;//the size of the puzzle
 	
 	
+	/**
+	 * Execute the program
+	 * @param args
+	 */
 	public static void main(String[] args){
-		Controller c=new Controller();
+		@SuppressWarnings("unused")
+		Controller c = new Controller();
 	}
 	
 	/**
@@ -45,9 +51,15 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-//			String[] words = m.findValidWords(v.getWordP().getSlider().getValue());
-			String[] words = {"test", "help", "haha"};
-			v.getWordP().getList().setListData(words);
+			try {
+				String[] words = m.findValidWords((int)(v.getWordP().getSpinner().getValue()));
+				v.getWordP().getList().setListData(words);
+			
+			} catch (WordLengthNotValidException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 		}
 		
@@ -95,13 +107,20 @@ public class Controller {
 				}
 			}
 			
-			//set the 2d arraylist to the model
-			m.getGrid().setPuzzle(gridlist);
+			
+			try {
+				//set the 2d arraylist to the model
+				m.getGrid().setSize(size);
+				m.getGrid().setPuzzle(gridlist);
+			} catch (SizeOutOfBoundsException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 			//set submitLetters button and title instruction invisible
 			v.getGridP().getSubmitLetters().setVisible(false);
 			v.getGridP().getTitle().setVisible(false);
-			System.out.println(m.getGrid().getPuzzle());
+			v.getWordP().setVisible(true);
 		}
 		
 	}

@@ -5,10 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
-
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 import puzzle.domain.Grid;
 import puzzle.util.SizeOutOfBoundsException;
 import puzzle.util.WordLengthNotValidException;

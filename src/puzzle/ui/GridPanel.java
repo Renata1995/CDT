@@ -33,12 +33,12 @@ public class GridPanel extends JPanel {
 		
 		grid=new ArrayList<ArrayList<JEditableLabel>>();
 		this.width=width;
-		this.setLayout(new BorderLayout(20,20));
+		this.setLayout(new BorderLayout(0,40));
 		
 		//title
 		title=new JLabel("Select a letter for each cell in the grid");
 		this.add(title,BorderLayout.NORTH);
-		View.setFont(title, 20);
+		View.setFont(title, 30);
 		
 		//grid
 		editableGrid=new JPanel();	
@@ -47,12 +47,12 @@ public class GridPanel extends JPanel {
 		//submit button
 		submitLetters=new JButton("Submit");
 		this.add(submitLetters,BorderLayout.SOUTH);
-		View.setFont(submitLetters, 20);
+		View.setFont(submitLetters, 30);
 	}
 	
 	public void generateGrid(int size){
 		grid.clear();
-		editableGrid.setLayout(new GridLayout(size,size,10,10));
+		editableGrid.setLayout(new GridLayout(size,size,20,20));
 		editableGrid.setPreferredSize(new Dimension(width,width));
 		
 		for(int i=0;i<size;i++){

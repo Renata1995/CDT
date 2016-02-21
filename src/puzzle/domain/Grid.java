@@ -162,22 +162,10 @@ public class Grid {
 	 * @throws SizeOutOfBoundsException
 	 */
 	public void setSize(int size)throws SizeOutOfBoundsException {
-		if(size>0&&size<20){
+		if(size>=2&&size<20){
 			this.size = size;
 		}
 	}
-
-
-	
-	
-	
-
-
-
-
-
-
-
 
 	/**
 	 * Getters and Setters

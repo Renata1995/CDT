@@ -1,19 +1,25 @@
 package puzzle.ui;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+@SuppressWarnings("serial")
 public class WordPanel extends JPanel {
 	private JButton submitButton; //The button that will submit the length of target words to the controller
 	private JSpinner lengthSpinner;
 	private JList<String> wordList;
 	private JScrollPane wordPane;
+	private JLabel timeLabel;
+	
 	/*...*/
 	public WordPanel(){
 		super();
@@ -29,22 +35,33 @@ public class WordPanel extends JPanel {
 		 * 
 		 * 
 		 */
+		this.setLayout(new BorderLayout(20,20));
+		JPanel north=new JPanel();
+		north.setLayout(new GridLayout(1,2,20,20));
+		lengthSpinner = new JSpinner(new SpinnerNumberModel(2, 2, 2, 1));
+		lengthSpinner.setSize(new Dimension(200,20));
+		lengthSpinner.setMinimumSize(new Dimension(50,20));
+		lengthSpinner.setPreferredSize(new Dimension(50,20));
+		north.add(lengthSpinner);
+		View.setFont(lengthSpinner,30);
+		
+		submitButton = new JButton("Submit");
+		north.add(submitButton);
+		View.setFont(submitButton,30);
 		
 		wordPane = new JScrollPane();
 		wordList = new JList<String>();
+		View.setFont(wordList,20);
 		
 		wordPane.setViewportView(wordList);
-		wordPane.setPreferredSize(new Dimension(480,445));
+		wordPane.setPreferredSize(new Dimension(480,400));
 		
-		lengthSpinner = new JSpinner(new SpinnerNumberModel(2, 2, 2, 1)); 
-		submitButton = new JButton("Submit");
+		timeLabel = new JLabel("TIME ELAPSED: ");
+		View.setFont(timeLabel, 20);
 		
-		add(lengthSpinner);
-		add(submitButton);
-		add(wordPane);
-		
-		
-		
+		add(north,BorderLayout.NORTH);
+		add(wordPane,BorderLayout.CENTER);
+		add(timeLabel,BorderLayout.SOUTH);
 		
 	}
 	
@@ -52,7 +69,7 @@ public class WordPanel extends JPanel {
 		return wordPane;
 	}
 	
-	public JSpinner getSlider(){
+	public JSpinner getSpinner(){
 		return lengthSpinner;
 	}
 	

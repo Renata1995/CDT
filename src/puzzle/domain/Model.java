@@ -1,6 +1,5 @@
 package puzzle.domain;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 import puzzle.util.SizeOutOfBoundsException;
@@ -44,6 +43,13 @@ public class Model {
 		return finalList;
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	public Grid getGrid() {
 		return grid;
 	}
